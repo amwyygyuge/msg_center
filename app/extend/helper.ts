@@ -10,6 +10,7 @@ export default {
 			return userHashMap[hash]
 		} else {
 			userHashMap[hash] = ioInfo
+			console.log(`${hash} in! count:${Object.keys(userHashMap).length}`)
 		}
 		return ioInfo
 	},
@@ -17,6 +18,7 @@ export default {
 		if (userHashMap[hash]) {
 			delete userHashMap[hash]
 		}
+		console.log(`${hash} out! count:${Object.keys(userHashMap).length}`)
 	},
 	findSocketOnUserId(user_id: number): IoInfo[] | false {
 		const hashs: any[] = []

@@ -1,9 +1,7 @@
 import { Service } from 'egg'
 import { UserMsg } from './../model/userMsg'
 import { UserMsgBody, QueryBody, ReadBody, Status } from './../interfaces/userMsg'
-/**
- * Test Service
- */
+
 export default class UserMsgService extends Service {
 	public async create(userMsgBody: UserMsgBody) {
 		const { user_ids = [], level, title, describe } = userMsgBody

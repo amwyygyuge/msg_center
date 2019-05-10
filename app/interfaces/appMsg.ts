@@ -7,6 +7,17 @@ export enum Levels {
 	Mid,
 	High
 }
+export enum Types {
+	Common,
+	UpdateLog
+}
+type UpdateLog = {
+	version: string
+	logs: string[]
+}
+
+type data = UpdateLog | string
+
 export interface IAppMsg {
 	status: Status
 	level: Levels
@@ -15,6 +26,8 @@ export interface IAppMsg {
 	read_user_ids: number[]
 	app_id: number
 	lastTime: Date
+	type: Types
+	data: data
 }
 
 export interface QueryBody {
@@ -30,9 +43,11 @@ export interface ReadBody {
 }
 
 export interface AppMsgBody {
-	level: Levels
+	level?: Levels
 	title: string
 	describe: string
 	app_ids: number[]
 	lastTime: Date
+	type?: Types
+	data?: data
 }

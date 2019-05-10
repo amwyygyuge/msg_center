@@ -27,7 +27,7 @@ export interface ReadBody {
 }
 
 export interface UserMsgBody {
-	level: Levels
+	level?: Levels
 	title: string
 	describe: string
 	user_ids: number[]

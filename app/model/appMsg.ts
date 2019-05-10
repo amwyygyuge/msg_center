@@ -1,5 +1,5 @@
 import { Document, Schema, Model, model } from 'mongoose'
-import { IAppMsg, Levels, Status } from './../interfaces/appMsg'
+import { IAppMsg, Levels, Status, Types } from './../interfaces/appMsg'
 export interface AppMsgModel extends IAppMsg, Document {}
 
 export const AppMsgSchema: Schema = new Schema(
@@ -10,7 +10,9 @@ export const AppMsgSchema: Schema = new Schema(
 		read_user_ids: { type: [ Number ], default: [ 0 ] },
 		app_id: Number,
 		lastTime: Date,
-		status: { type: Number, default: Status['Working'] }
+		status: { type: Number, default: Status['Working'] },
+		type: { type: Number, default: Types['Common'] },
+		data: Schema.Types.Mixed
 	},
 	{
 		timestamps: true,

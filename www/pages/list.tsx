@@ -12,7 +12,8 @@ export default class IApp extends React.Component<IAppProps, any> {
 		this.socket = io("http://localhost:7070/io", {
 			query: {
 				user_id: 200,
-				app_id: 100
+				app_id: 100,
+				token: "eyJhbGciOiJIUsInR5cCI6IkpXVCJ9.eyJhcHBfaWQiOjUsInRva2VuIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnpkV0lpT2lJeE1qTTBOVFkzT0Rrd0lpd2libUZ0WlNJNklrcHZhRzRnUkc5bElpd2lhV0YwSWpveE5URTJNak01TURJeWZRLlNmbEt4d1JKU01lS0tGMlFUNGZ3cE1lSmYzNlBPazZ5SlZfYWRRc3N3NWMiLCJ1c2VyX2lkcyI6MTAwLCJpYXQiOjE1NTc0MDQ5NjR9.SJ_opOKWFX9ARUrtsiEWdgQH5NjVg-5NUahSwJvYtI8"
 			}
 		})
 		this.socket.on("res", (res: any) => {
