@@ -1,7 +1,7 @@
 import { Service } from 'egg'
 import { AppMsg } from './../model/appMsg'
 import { AppMsgBody, QueryBody, ReadBody, Status } from './../interfaces/appMsg'
-const moment = require('moment')
+import moment = require('moment')
 
 export default class AppMsgService extends Service {
 	public async create(appMsgBody: AppMsgBody) {
@@ -18,7 +18,7 @@ export default class AppMsgService extends Service {
 				describe,
 				type,
 				data,
-				read_user_ids: [ 0 ]
+				read_user_ids: [ 0 ],
 			}
 			const sockets = helper.findSocketOnAppId(app_id)
 			if (sockets) {
@@ -39,9 +39,9 @@ export default class AppMsgService extends Service {
 	public async read(readBody: ReadBody) {
 		const { app_id, user_id } = readBody
 		const msgs = await AppMsg.find({
-			status: Status['Working'],
+			status: Status.Working,
 			lastTime: { $gt: moment() },
-			app_id
+			app_id,
 		})
 		const _msgs = msgs.filter(({ read_user_ids }) => !read_user_ids.includes(user_id))
 		_msgs.forEach(msg => {
@@ -54,12 +54,12 @@ export default class AppMsgService extends Service {
 	public async updateStatus() {
 		await AppMsg.updateMany(
 			{
-				status: Status['Working'],
-				lastTime: { $lt: moment() }
+				status: Status.Working,
+				lastTime: { $lt: moment() },
 			},
 			{
-				status: Status['Done']
-			}
+				status: Status.Done,
+			},
 		)
 		return true
 	}

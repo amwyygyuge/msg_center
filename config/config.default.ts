@@ -10,35 +10,35 @@ export default (appInfo: EggAppInfo) => {
 	// add your egg config in here
 	config.middleware = []
 	config.security = {
-		csrf: false
+		csrf: false,
 	}
 	config.io = {
 		init: {}, // passed to engine.io
 		namespace: {
 			'/io': {
 				connectionMiddleware: [ 'connection' ],
-				packetMiddleware: []
-			}
-		}
+				packetMiddleware: [],
+			},
+		},
 	}
 
 	config.cors = {
 		origin: '*',
-		maxAge: 3600 * 1000
+		maxAge: 3600 * 1000,
 	}
 
 	config.static = {
-		gzip: true
+		gzip: true,
 	}
 
 	// add your special config in here
 	const bizConfig = {
-		sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`
+		sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
 	}
 
 	// the return config will combines to EggAppConfig
 	return {
 		...config,
-		...bizConfig
+		...bizConfig,
 	}
 }

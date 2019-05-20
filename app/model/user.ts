@@ -9,7 +9,7 @@ const UserSchema: Schema = new Schema({
 	cname: String,
 	email: String,
 	qq: String,
-	dept: String
+	dept: String,
 })
 
 export const User: Model<UserModal> = model<UserModal>('User', UserSchema)

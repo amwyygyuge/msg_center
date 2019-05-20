@@ -5,15 +5,15 @@ export default () => {
 	config.mongoose = {
 		client: {
 			url: 'mongodb://127.0.0.1/msg_center',
-			options: {}
-		}
+			options: {},
+		},
 	}
 	config.cluster = {
 		listen: {
 			port: 7070,
-			hostname: 'localhost'
+			hostname: 'localhost',
 			// path: '/var/run/egg.sock',
-		}
+		},
 	}
 	return config
 }

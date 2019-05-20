@@ -21,6 +21,7 @@
 		"build": "set NODE_ENV=production && next build",
 		"start": "set NODE_ENV=production && next start",
 		"stop": "next stop",
+		"fix": "tslint --project . --fix",
 		"export": "set NODE_ENV=production && npm run build && next export"
 	}
 }

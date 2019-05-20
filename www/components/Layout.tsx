@@ -14,7 +14,7 @@ export default function BaseLayout(props: Props) {
 		<div>
 			<Head>
 				<title>消息推送</title>
-				<meta name='viewport' content='initial-scale=1.0, width=device-width' />
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
 			</Head>
 			<Layout style={{ minHeight: '100vh' }}>
 				{/* <Sider>

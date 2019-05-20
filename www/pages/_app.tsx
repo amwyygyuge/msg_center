@@ -5,7 +5,7 @@ export default class MyApp extends App {
 	render() {
 		const { Component, pageProps } = this.props
 		return (
-			<BaseLayout name='dadw'>
+			<BaseLayout name="dadw">
 				<Container>
 					<Component {...pageProps} />
 				</Container>

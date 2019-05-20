@@ -21,7 +21,7 @@ export default class FooBoot implements IBoot {
 		if (!client && !clients && url) {
 			this.app.config.mongoose.client = {
 				url,
-				options
+				options,
 			}
 		}
 

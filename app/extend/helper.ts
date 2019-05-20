@@ -39,5 +39,5 @@ export default {
 		})
 		if (hashs.length === 0) return false
 		return hashs
-	}
+	},
 }

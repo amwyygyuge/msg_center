@@ -8,12 +8,12 @@ export const UserMsgSchema: Schema = new Schema(
 		title: String,
 		describe: String,
 		user_id: Number,
-		status: { type: Number, default: Status['unread'] }
+		status: { type: Number, default: Status.unread },
 	},
 	{
 		timestamps: true,
-		versionKey: false
-	}
+		versionKey: false,
+	},
 )
 
 export const UserMsg: Model<UserMsgModel> = model<UserMsgModel>('UserMsg', UserMsgSchema)

@@ -1,3 +1,4 @@
+import { IModel } from './base'
 export enum Status {
 	Done,
 	Working
@@ -11,14 +12,14 @@ export enum Types {
 	Common,
 	UpdateLog
 }
-type UpdateLog = {
+interface UpdateLog {
 	version: string
 	logs: string[]
 }
 
 type data = UpdateLog | string
 
-export interface IAppMsg {
+export interface IAppMsg extends IModel {
 	status: Status
 	level: Levels
 	title: string

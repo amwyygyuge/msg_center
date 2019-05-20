@@ -4,20 +4,20 @@ export interface AppMsgModel extends IAppMsg, Document {}
 
 export const AppMsgSchema: Schema = new Schema(
 	{
-		levels: { type: Number, default: Levels['Low'] },
+		levels: { type: Number, default: Levels.Low },
 		title: String,
 		describe: String,
 		read_user_ids: { type: [ Number ], default: [ 0 ] },
 		app_id: Number,
 		lastTime: Date,
-		status: { type: Number, default: Status['Working'] },
-		type: { type: Number, default: Types['Common'] },
-		data: Schema.Types.Mixed
+		status: { type: Number, default: Status.Working },
+		type: { type: Number, default: Types.Common },
+		data: Schema.Types.Mixed,
 	},
 	{
 		timestamps: true,
-		versionKey: false
-	}
+		versionKey: false,
+	},
 )
 
 export const AppMsg: Model<AppMsgModel> = model<AppMsgModel>('AppMsg', AppMsgSchema)

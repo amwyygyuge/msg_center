@@ -13,12 +13,12 @@ export default class UserMsgService extends Service {
 				level,
 				title,
 				describe,
-				status: Status['unread']
+				status: Status.unread,
 			}
 			const sockets = helper.findSocketOnUserId(user_id)
 			if (sockets) {
 				sockets.forEach(({ socket }) => {
-					msg.status = Status['read']
+					msg.status = Status.read
 					socket.emit('new_user_msg', msg)
 				})
 			}
@@ -34,11 +34,11 @@ export default class UserMsgService extends Service {
 	public async read(readBody: ReadBody) {
 		const { user_id } = readBody
 		const msgs = await UserMsg.find({
-			status: Status['unread'],
-			user_id
+			status: Status.unread,
+			user_id,
 		})
 
-		await UserMsg.updateMany({ user_id }, { status: Status['read'] })
+		await UserMsg.updateMany({ user_id }, { status: Status.read })
 		return msgs
 	}
 }

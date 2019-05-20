@@ -19,6 +19,7 @@
 		"ci": "npm run lint && npm run cov && npm run tsc",
 		"autod": "autod",
 		"lint": "tslint --project . -c tslint.json",
+		"fix": "tslint --project . -c tslint.json --fix",
 		"clean": "ets clean"
 	},
 	"dependencies": {
