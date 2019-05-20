@@ -14,6 +14,8 @@ export default (app: Application) => {
 	const _app = router.namespace('/api/app')
 	_app.post('/create', controller.app.create)
 
-	io.of('/io').route('check_new_user_msg', io.controller.userMsg.check_new_user_msg)
-	io.of('/io').route('check_new_app_msg', io.controller.appMsg.check_new_app_msg)
+	io.of('/io').route('check_user_msg', io.controller.userMsg.check_user_msg)
+	io.of('/io').route('check_app_msg', io.controller.appMsg.check_app_msg)
+	io.of('/io').route('read_app_msg', io.controller.appMsg.read_app_msg)
+	io.of('/io').route('read_user_msg', io.controller.userMsg.read_user_msg)
 }

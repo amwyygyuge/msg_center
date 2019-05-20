@@ -7,7 +7,7 @@ export default class UserMsgController extends Controller {
 	}
 	public async read() {
 		const { ctx } = this
-		ctx.body = await ctx.service.userMsg.read(ctx.request.body)
+		ctx.body = await ctx.service.userMsg.check_msg(ctx.request.body)
 	}
 
 	public async query() {

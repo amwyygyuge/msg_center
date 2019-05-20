@@ -2,13 +2,13 @@ import { IModel } from './base'
 
 export enum Status {
 	unread,
-	read,
+	read
 }
 
 export enum Levels {
 	High,
 	Low,
-	Mid,
+	Mid
 }
 export interface IUserMsg extends IModel {
 	level: Levels
@@ -33,4 +33,8 @@ export interface UserMsgBody {
 	title: string
 	describe: string
 	user_ids: number[]
+}
+
+export interface ReadOneBody {
+	id: any
 }

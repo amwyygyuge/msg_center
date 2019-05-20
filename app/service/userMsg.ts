@@ -1,9 +1,9 @@
 import { Service } from 'egg'
 import { UserMsg } from './../model/userMsg'
-import { UserMsgBody, QueryBody, ReadBody, Status } from './../interfaces/userMsg'
+import { UserMsgBody, QueryBody, ReadBody, Status, ReadOneBody } from './../interfaces/userMsg'
 
 export default class UserMsgService extends Service {
-	public async create(userMsgBody: UserMsgBody) {
+	public async create (userMsgBody: UserMsgBody) {
 		const { user_ids = [], level, title, describe } = userMsgBody
 		const { helper } = this.ctx
 		const msgs: any[] = []
@@ -13,12 +13,11 @@ export default class UserMsgService extends Service {
 				level,
 				title,
 				describe,
-				status: Status.unread,
+				status: Status.unread
 			}
 			const sockets = helper.findSocketOnUserId(user_id)
 			if (sockets) {
 				sockets.forEach(({ socket }) => {
-					msg.status = Status.read
 					socket.emit('new_user_msg', msg)
 				})
 			}
@@ -27,18 +26,27 @@ export default class UserMsgService extends Service {
 		return await UserMsg.insertMany(msgs)
 	}
 
-	public async query(queryBody: QueryBody) {
+	public async query (queryBody: QueryBody) {
 		return await UserMsg.find(queryBody)
 	}
 
-	public async read(readBody: ReadBody) {
+	public async check_msg (readBody: ReadBody) {
 		const { user_id } = readBody
 		const msgs = await UserMsg.find({
 			status: Status.unread,
-			user_id,
+			user_id
 		})
-
-		await UserMsg.updateMany({ user_id }, { status: Status.read })
+		// await UserMsg.updateMany({ user_id }, { status: Status.read })
 		return msgs
+	}
+
+	public async readOne (readOneBody: ReadOneBody) {
+		const { id } = readOneBody
+		const isOK = await UserMsg.findByIdAndUpdate(id, { status: Status.read })
+		if (isOK) {
+			return { isOK: true, id }
+		} else {
+			return { isOK: false, id }
+		}
 	}
 }

@@ -43,6 +43,11 @@ export interface ReadBody {
 	user_id: number
 }
 
+export interface ReadOneBody {
+	id: any
+	user_id: number
+}
+
 export interface AppMsgBody {
 	level?: Levels
 	title: string

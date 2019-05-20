@@ -66,14 +66,17 @@ class Index extends Component<Props> {
 		this.socket.on('new_user_msg', (data: any) => {
 			console.log(data)
 		})
-		this.socket.on('check_new_user_msg', (data: any) => {
+		this.socket.on('check_user_msg', (data: any) => {
 			console.log(data)
 		})
-		this.socket.emit('check_new_user_msg')
-		this.socket.on('check_new_app_msg', (data: any) => {
+		this.socket.emit('check_user_msg')
+		this.socket.on('check_app_msg', (data: any) => {
 			console.log(data)
 		})
-		this.socket.emit('check_new_app_msg')
+		this.socket.on('read_app_msg', (data: any) => {
+			console.log(data)
+		})
+		this.socket.emit('check_app_msg')
 	}
 
 	componentWillUnmount() {
@@ -83,7 +86,6 @@ class Index extends Component<Props> {
 	static async getInitialProps(): Promise<any> {
 		const app_msgs = await queryAppMsg({})
 		const user_msgs = await queryUserMsg({})
-		console.log(app_msgs)
 		return { app_msgs, user_msgs }
 	}
 
@@ -100,15 +102,38 @@ class Index extends Component<Props> {
 		</div>
 	}
 
+	public readAppMsg = (id: string) => {
+		console.log(id)
+		this.socket.emit('read_app_msg', id)
+	}
+	public readUserMsg = (id: string) => {
+		console.log(id)
+		this.socket.emit('read_user_msg', id)
+	}
+
 	render() {
 		const { app_msgs, user_msgs } = this.props
+		const readAppMsg = {
+			title: '操作',
+			dataIndex: 'handle',
+			render: (value: any, row: any, index: number) => {
+				return <Button onClick={() => this.readAppMsg(row._id)}>读</Button>
+			}
+		}
+		const readUserMsg = {
+			title: '操作',
+			dataIndex: 'handle',
+			render: (value: any, row: any, index: number) => {
+				return <Button onClick={() => this.readUserMsg(row._id)}>读</Button>
+			}
+		}
 		return (
 			<div>
 				<Card title={this.renderAppTitle()}>
-					<Table columns={appColumns} dataSource={app_msgs} />
+					<Table columns={[readAppMsg, ...appColumns]} dataSource={app_msgs} />
 				</Card>
 				<Card title={this.renderUserTitle()} style={{ marginTop: 25 }}>
-					<Table columns={userColumns} dataSource={user_msgs} />
+					<Table columns={[readUserMsg, ...userColumns]} dataSource={user_msgs} />
 				</Card>
 			</div>
 
