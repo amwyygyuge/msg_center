@@ -2,21 +2,17 @@ import React, { Component } from 'react'
 import { Button, Table, Card, Divider } from 'antd'
 import Link from 'next/link'
 import io from 'socket.io-client'
-import { queryAppMsg } from './../services/msg'
-
+import { queryUserMsg } from './../services/msg'
+import { queryStaff } from './../services/staff'
 interface Props {
 	project: any
 	app_msgs: any[]
 	user_msgs: any[]
 }
-const appColumns = [
+const userColumns = [
 	{
-		dataIndex: 'app_id',
-		title: 'app_id'
-	},
-	{
-		dataIndex: 'type',
-		title: '消息类型'
+		dataIndex: 'user_id',
+		title: 'user_id'
 	},
 	{
 		dataIndex: 'title',
@@ -25,14 +21,6 @@ const appColumns = [
 	{
 		dataIndex: 'describe',
 		title: '描述'
-	},
-	{
-		dataIndex: 'lastTime',
-		title: '过期时间'
-	},
-	{
-		dataIndex: 'createdAt',
-		title: '创建时间'
 	}
 ]
 class Index extends Component<Props> {
@@ -71,36 +59,37 @@ class Index extends Component<Props> {
 	}
 
 	static async getInitialProps(): Promise<any> {
-		const app_msgs = await queryAppMsg({})
-		return { app_msgs }
+		const user_msgs = await queryUserMsg({})
+		const staffs = await queryStaff({ method: 'GET' })
+		return { user_msgs, staffs }
 	}
 
-	renderAppTitle = () => {
+	renderUserTitle = () => {
 		return <div>
-			应用消息
-			<Link href="/post/app_msg"><Button type="primary" style={{ marginLeft: 15 }} >推送</Button></Link>
+			用户消息
+			<Link href="/post/user_msg"><Button type="primary" style={{ marginLeft: 15 }} >推送</Button></Link>
 		</div>
 	}
 
-	public readAppMsg = (id: string) => {
+	public readUserMsg = (id: string) => {
 		console.log(id)
-		this.socket.emit('read_app_msg', id)
+		this.socket.emit('read_user_msg', id)
 	}
 
 	render() {
-		const { app_msgs } = this.props
-		const readAppMsg = {
+		const { user_msgs } = this.props
+
+		const readUserMsg = {
 			title: '操作',
 			dataIndex: 'handle',
 			render: (value: any, row: any, index: number) => {
-				return <Button onClick={() => this.readAppMsg(row._id)}>读</Button>
+				return <Button onClick={() => this.readUserMsg(row._id)}>读</Button>
 			}
 		}
-
 		return (
 			<div>
-				<Card title={this.renderAppTitle()}>
-					<Table columns={[readAppMsg, ...appColumns]} dataSource={app_msgs} />
+				<Card title={this.renderUserTitle()} style={{ marginTop: 25 }}>
+					<Table columns={[readUserMsg, ...userColumns]} dataSource={user_msgs} />
 				</Card>
 			</div>
 

@@ -1,7 +1,10 @@
-export const domain = 'http://127.0.0.1:7070/api'
+const dev = 'http://127.0.0.1:7070/api'
 const prod = 'http://119.29.134.187:5432/api'
 import fetch, { RequestInit } from 'node-fetch'
-
+let domain = dev
+if (process.env.NODE_ENV !== 'development') {
+	domain = prod
+}
 export const request = (url: string, init?: RequestInit) => {
 	if (init && init.body) {
 		init.body = JSON.stringify(init.body)

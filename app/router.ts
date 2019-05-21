@@ -2,6 +2,10 @@ import { Application } from 'egg'
 
 export default (app: Application) => {
 	const { controller, router, io } = app
+	const appRouter = router.namespace('/api/app')
+	appRouter.get('/query', controller.app.query)
+	appRouter.post('/create', controller.app.create)
+	router.get('/api/staff/query', controller.staff.query)
 	router.post('/api/auth', controller.auth.encode)
 	const app_msg = router.namespace('/api/app_msg')
 	app_msg.post('/create', controller.appMsg.create)

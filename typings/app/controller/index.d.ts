@@ -5,6 +5,7 @@ import 'egg';
 import ExportApp from '../../../app/controller/app';
 import ExportAppMsg from '../../../app/controller/appMsg';
 import ExportAuth from '../../../app/controller/auth';
+import ExportStaff from '../../../app/controller/staff';
 import ExportUserMsg from '../../../app/controller/userMsg';
 
 declare module 'egg' {
@@ -12,6 +13,7 @@ declare module 'egg' {
     app: ExportApp;
     appMsg: ExportAppMsg;
     auth: ExportAuth;
+    staff: ExportStaff;
     userMsg: ExportUserMsg;
   }
 }

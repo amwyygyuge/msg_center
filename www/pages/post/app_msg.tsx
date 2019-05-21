@@ -3,7 +3,11 @@ import { Form, Card, Input, Select, Button, DatePicker } from 'antd'
 import { FormComponentProps } from 'antd/lib/form/Form'
 import EditTable from './../../components/EditTable'
 import { postAppMsg } from './../../services/msg'
+import { queryApp } from './../../services/app'
+import Link from 'next/link'
+import moment from 'moment'
 const Item = Form.Item
+const Option = Select.Option
 export enum Types {
 	Common,
 	UpdateLog
@@ -19,7 +23,7 @@ const columns: any[] = [
 	},
 ]
 export interface IAppProps extends FormComponentProps {
-
+	apps: any[]
 }
 class AppMsg extends React.Component<IAppProps, any> {
 	public post = () => {
@@ -33,6 +37,11 @@ class AppMsg extends React.Component<IAppProps, any> {
 		}).then(res => {
 			console.log(res)
 		})
+	}
+
+	static async getInitialProps(): Promise<any> {
+		const apps = await queryApp({ method: 'GET' })
+		return { apps }
 	}
 
 	renderUpdateInfo = () => {
@@ -55,17 +64,27 @@ class AppMsg extends React.Component<IAppProps, any> {
 		]
 	}
 
+	public createApp = () => {
+
+	}
+
 	public render() {
 		const { getFieldDecorator } = this.props.form
+		const { apps } = this.props
+		const _apps = apps.map(({ app_id, name }) => <Option key={app_id}>{name}</Option>)
+
 		return (
 			<Card>
 				<Form>
-					<Item label="应用id">
+					<Item label="应用">
 						{
 							getFieldDecorator('app_ids[0]')(
-								<Input />
+								<Select showSearch allowClear optionFilterProp="children" style={{ width: '50%', marginRight: 15 }}>
+									{_apps}
+								</Select>
 							)
 						}
+						<Link href="/post/create_app"><Button type="primary" onClick={this.createApp} >添加应用</Button></Link>
 					</Item>
 
 					<Item label="消息标题">
@@ -84,7 +103,7 @@ class AppMsg extends React.Component<IAppProps, any> {
 					</Item>
 					<Item label="有效时间">
 						{
-							getFieldDecorator('lastTime')(
+							getFieldDecorator('lastTime', { initialValue: moment().add(1, 'years') })(
 								<DatePicker />
 							)
 						}

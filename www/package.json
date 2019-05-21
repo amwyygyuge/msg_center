@@ -10,14 +10,14 @@
 		"koa": "^2.7.0",
 		"koa-router": "^7.4.0",
 		"next": "^8.1.0",
-		"node-fetch": "^2.5.0",
+		"node-fetch": "^2.6.0",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4",
 		"socket.io-client": "^2.2.0",
 		"typescript": "^3.3.4000"
 	},
 	"scripts": {
-		"dev": "next",
+		"dev": "next dev -H 0.0.0.0 -p 8000",
 		"build": "set NODE_ENV=production && next build",
 		"start": "set NODE_ENV=production && next start",
 		"stop": "next stop",
