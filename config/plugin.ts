@@ -8,16 +8,20 @@ const plugin: EggPlugin = {
 	// },
 	routerPlus: {
 		enable: true,
-		package: 'egg-router-plus',
+		package: 'egg-router-plus'
 	},
 	cors: {
 		enable: true,
-		package: 'egg-cors',
+		package: 'egg-cors'
 	},
 	io: {
 		enable: true,
-		package: 'egg-socket.io',
+		package: 'egg-socket.io'
 	},
+	nunjucks: {
+		enable: true,
+		package: 'egg-view-nunjucks'
+	}
 }
 
 export default plugin

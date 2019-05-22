@@ -22,4 +22,5 @@ export default (app: Application) => {
 	io.of('/io').route('check_app_msg', io.controller.appMsg.check_app_msg)
 	io.of('/io').route('read_app_msg', io.controller.appMsg.read_app_msg)
 	io.of('/io').route('read_user_msg', io.controller.userMsg.read_user_msg)
+	router.get('*', controller.view.index)
 }

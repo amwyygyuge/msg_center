@@ -1,27 +1,35 @@
 {
+	"name": "demo-app",
+	"version": "0.0.1",
+	"description": "",
+	"author": "",
+	"license": "MIT",
+	"private": true,
+	"link": false,
 	"dependencies": {
-		"@types/next": "^8.0.3",
-		"@types/socket.io-client": "^1.4.32",
-		"@zeit/next-css": "^1.0.1",
-		"@zeit/next-typescript": "^1.1.1",
-		"antd": "^3.15.1",
-		"babel-plugin-import": "^1.11.0",
-		"fork-ts-checker-webpack-plugin": "^1.0.0",
-		"koa": "^2.7.0",
-		"koa-router": "^7.4.0",
-		"next": "^8.1.0",
-		"node-fetch": "^2.6.0",
-		"react": "^16.8.4",
-		"react-dom": "^16.8.4",
-		"socket.io-client": "^2.2.0",
-		"typescript": "^3.3.4000"
+		"axios": "^0.18.0",
+		"history": "^4.7.2",
+		"igroot": "1.6.6",
+		"igroot-edit-table": "^1.0.3",
+		"igroot-editor": "^1.2.0",
+		"igroot-fetch": "^1.5.6",
+		"igroot-form-container": "0.0.2",
+		"igroot-frame-layout": "^0.2.0",
+		"igroot-table-page": "^2.1.2",
+		"lokka": "^1.7.0",
+		"mobx": "^5.9.0",
+		"mobx-react": "^5.4.3",
+		"moment": "^2.24.0",
+		"prettier-config-bscloud": "^1.0.1",
+		"react": "^16.8.3",
+		"react-dom": "^16.8.3",
+		"react-router": "^4.3.1",
+		"react-router-dom": "^4.3.1",
+		"styled-components": "^4.1.3"
 	},
-	"scripts": {
-		"dev": "next dev -H 0.0.0.0 -p 3000",
-		"build": "set NODE_ENV=production && next build",
-		"start": "set NODE_ENV=production && next start -H 0.0.0.0 -p 3000",
-		"stop": "next stop",
-		"fix": "tslint --project . --fix",
-		"export": "set NODE_ENV=production && npm run build && next export"
-	}
+	"engines": {
+		"node": ">= 6.9.3",
+		"npm": ">= 3"
+	},
+	"main": "index.js"
 }

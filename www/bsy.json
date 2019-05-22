@@ -1,0 +1,13 @@
+{
+	"name": "app-name",
+	"repository": {},
+	"builder": "igroot-builder",
+	"options": {
+		"homepage": "index",
+		"port": 3000,
+		"theme": {},
+		"esModule": [ "sso-login", "igroot-form-container", "igroot-frame-layout" ],
+		"publicPath": "/public/",
+		"buildPath": "./../app/public/"
+	}
+}

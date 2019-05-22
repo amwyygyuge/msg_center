@@ -17,6 +17,7 @@ import 'egg-view';
 import 'egg-router-plus';
 import 'egg-cors';
 import 'egg-socket.io';
+import 'egg-view-nunjucks';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
   interface EggPlugin {
@@ -35,5 +36,6 @@ declare module 'egg' {
     routerPlus?: EggPluginItem;
     cors?: EggPluginItem;
     io?: EggPluginItem;
+    nunjucks?: EggPluginItem;
   }
 }

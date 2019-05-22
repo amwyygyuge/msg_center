@@ -7,6 +7,7 @@ import ExportAppMsg from '../../../app/controller/appMsg';
 import ExportAuth from '../../../app/controller/auth';
 import ExportStaff from '../../../app/controller/staff';
 import ExportUserMsg from '../../../app/controller/userMsg';
+import ExportView from '../../../app/controller/view';
 
 declare module 'egg' {
   interface IController {
@@ -15,5 +16,6 @@ declare module 'egg' {
     auth: ExportAuth;
     staff: ExportStaff;
     userMsg: ExportUserMsg;
+    view: ExportView;
   }
 }
