@@ -16,7 +16,7 @@ const columns: any[] = [
 	{
 		title: '更新内容',
 		dataIndex: 'log',
-		renderFrom: (value: string | undefined, row: any, index: number, onChange: (arg0: string) => void) => <Input value={value} onChange={e => {
+		renderFrom: (value: string | undefined, _row: any, _index: number, onChange: (arg0: string) => void) => <Input value={value} onChange={e => {
 			onChange(e.target.value)
 		}
 		} />,

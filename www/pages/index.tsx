@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Table, Card, Divider } from 'antd'
+import { Button, Table, Card } from 'antd'
 import Link from 'next/link'
 import { init } from './../services/io'
 import { queryAppMsg } from './../services/msg'
@@ -66,7 +66,7 @@ class Index extends Component<Props> {
 		const readAppMsg = {
 			title: '操作',
 			dataIndex: 'handle',
-			render: (value: any, row: any, index: number) => {
+			render: (_value: any, row: any) => {
 				return <Button onClick={() => this.readAppMsg(row._id)}>读</Button>
 			}
 		}

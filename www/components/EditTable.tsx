@@ -1,4 +1,4 @@
-import * as  React from 'react'
+import * as React from 'react'
 import { Table, Button } from 'antd'
 import { TableProps, ColumnProps } from 'antd/lib/table/'
 type onChange = (value: any) => void
@@ -26,7 +26,7 @@ function createHandleColumn<T>(formValue: formValue, onChange: onChange | undefi
 		title: '操作',
 		dataIndex: 'handle',
 		width: 80,
-		render: (value: any, row: T, index: number) =>
+		render: (_value: any, _row: T, index: number) =>
 			<div style={{ textAlign: 'center' }}>
 				<Button type="danger" size="small" onClick={() => handleRemove(index)} >删除</Button>
 			</div>
@@ -71,7 +71,7 @@ const createAddButton = (formValue: formValue, onChange: onChange | undefined, i
 			formValue.push(_initValue)
 			onChange && onChange(formValue)
 		} else {
-			onChange && onChange([ _initValue ])
+			onChange && onChange([_initValue])
 		}
 	}
 	return <Button onClick={handleAdd}>新加列</Button>
@@ -101,7 +101,7 @@ function EditTable<T>(editTableProps: EditTableProps<T>) {
 		onChange && onChange([])
 		// return <div>表单数据格式必须为数组。</div>
 	}
-	return <Table bordered size="small" title={() => AddButton} {...editTableProps} columns={[ handleColumn, ..._columns ]} dataSource={formValue} pagination={false} />
+	return <Table bordered size="small" title={() => AddButton} {...editTableProps} columns={[handleColumn, ..._columns]} dataSource={formValue} pagination={false} />
 }
 
 export default EditTable

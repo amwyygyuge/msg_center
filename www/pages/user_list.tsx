@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Table, Card, Divider } from 'antd'
+import { Button, Table, Card } from 'antd'
 import Link from 'next/link'
 import io from 'socket.io-client'
 import { queryUserMsg } from './../services/msg'
@@ -82,14 +82,14 @@ class Index extends Component<Props> {
 		const readUserMsg = {
 			title: '操作',
 			dataIndex: 'handle',
-			render: (value: any, row: any, index: number) => {
+			render: (_value: any, row: any) => {
 				return <Button onClick={() => this.readUserMsg(row._id)}>读</Button>
 			}
 		}
 		return (
 			<div>
 				<Card title={this.renderUserTitle()} style={{ marginTop: 25 }}>
-					<Table columns={[readUserMsg, ...userColumns]} dataSource={user_msgs} />
+					<Table columns={[ readUserMsg, ...userColumns ]} dataSource={user_msgs} />
 				</Card>
 			</div>
 

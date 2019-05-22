@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import Head from "next/head"
 import { Layout, Menu, Icon } from "antd"
 import Link from 'next/link'
