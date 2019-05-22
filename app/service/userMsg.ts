@@ -1,7 +1,7 @@
 import { Service } from 'egg'
 import { UserMsg } from './../model/userMsg'
 import { UserMsgBody, QueryBody, ReadBody, Status, ReadOneBody } from './../interfaces/userMsg'
-
+import { Types } from 'mongoose'
 export default class UserMsgService extends Service {
 	public async create (userMsgBody: UserMsgBody) {
 		const { user_ids = [], level, title, describe } = userMsgBody
@@ -9,6 +9,7 @@ export default class UserMsgService extends Service {
 		const msgs: any[] = []
 		user_ids.forEach(user_id => {
 			const msg = {
+				_id: Types.ObjectId(),
 				user_id,
 				level,
 				title,

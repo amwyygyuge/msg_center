@@ -1,6 +1,7 @@
 import { Service } from 'egg'
 import { AppMsg } from './../model/appMsg'
 import { AppMsgBody, QueryBody, ReadBody, Status, ReadOneBody } from './../interfaces/appMsg'
+import { Types } from 'mongoose'
 import moment = require('moment')
 
 export default class AppMsgService extends Service {
@@ -11,6 +12,7 @@ export default class AppMsgService extends Service {
 		const msgs: any[] = []
 		app_ids.forEach(app_id => {
 			const msg = {
+				_id: Types.ObjectId(),
 				app_id,
 				lastTime: _lastTime,
 				level,

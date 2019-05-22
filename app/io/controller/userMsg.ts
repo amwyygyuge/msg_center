@@ -8,7 +8,7 @@ export default class UserMsgController extends Controller {
 		const decode: any = jwt.verify(token, keys)
 		const { user_id } = decode
 		const msgs = await ctx.service.userMsg.check_msg({ user_id })
-		await ctx.socket.emit('check_new_user_msg', msgs)
+		await ctx.socket.emit('check_user_msg', msgs)
 	}
 
 	public async read_user_msg () {

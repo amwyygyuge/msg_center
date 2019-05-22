@@ -11,7 +11,7 @@ export default class AppMsgController extends Controller {
 			user_id: parseInt(user_id),
 			app_id: parseInt(app_id)
 		})
-		await ctx.socket.emit('check_new_app_msg', msgs)
+		await ctx.socket.emit('check_app_msg', msgs)
 	}
 
 	public async read_app_msg () {
