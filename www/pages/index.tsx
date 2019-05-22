@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Table, Card, Divider } from 'antd'
 import Link from 'next/link'
-import io from 'socket.io-client'
+import { init } from './../services/io'
 import { queryAppMsg } from './../services/msg'
-
 interface Props {
 	project: any
 	app_msgs: any[]
@@ -38,32 +37,7 @@ const appColumns = [
 class Index extends Component<Props> {
 	public socket: any = null
 	componentDidMount() {
-		this.socket = io('http://127.0.0.1:7070/io', {
-			query: {
-				token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfaWQiOjEwMCwidG9rZW4iOiI1YyIsInVzZXJfaWQiOjEwMCwiaWF0IjoxNTU4NDMyNDM2fQ.VtgIFc7UkoSIYiJgxgfc2EKGU5Ej53QME5dbML4jiOM'
-			}
-		})
-		this.socket.on('res', (res: any) => {
-			console.log('返回成功')
-			console.log(res)
-		})
-		this.socket.on('new_app_msg', (data: any) => {
-			console.log(data)
-		})
-		this.socket.on('new_user_msg', (data: any) => {
-			console.log(data)
-		})
-		this.socket.on('check_user_msg', (data: any) => {
-			console.log(data)
-		})
-		this.socket.emit('check_user_msg')
-		this.socket.on('check_app_msg', (data: any) => {
-			console.log(data)
-		})
-		this.socket.on('read_app_msg', (data: any) => {
-			console.log(data)
-		})
-		this.socket.emit('check_app_msg')
+		this.socket = init()
 	}
 
 	componentWillUnmount() {

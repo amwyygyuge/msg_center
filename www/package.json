@@ -17,9 +17,9 @@
 		"typescript": "^3.3.4000"
 	},
 	"scripts": {
-		"dev": "next dev -H 0.0.0.0 -p 8000",
+		"dev": "next dev -H 0.0.0.0 -p 3000",
 		"build": "set NODE_ENV=production && next build",
-		"start": "set NODE_ENV=production && next start",
+		"start": "set NODE_ENV=production && next start -H 0.0.0.0 -p 3000",
 		"stop": "next stop",
 		"fix": "tslint --project . --fix",
 		"export": "set NODE_ENV=production && npm run build && next export"
